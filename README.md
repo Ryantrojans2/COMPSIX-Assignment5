@@ -1,109 +1,118 @@
-# Assignment #5: Restaurant API 
-This repository contains your starter code for the Restaurant API assignment focusing on middleware implementation and API documentation.
+# Assignment 5: Tasty Bites Restaurant API
+
+## Project Description
+
+This project is a Restaurant Menu Management API built using Node.js and Express.js. It allows users to retrieve, create, update, and delete restaurant menu items.
+
+The API includes custom middleware for request logging and input validation using `express-validator`.
+
+## Technologies Used
+
+- Node.js
+- Express.js
+- express-validator
+- Postman
+- JavaScript
 
 ## Getting Started
-1. Clone this repository to your local machine
-2. Navigate to the project directory
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
 
-## Assignment Overview
-You will build a complete restaurant menu management API that demonstrates:
-- **Custom middleware functions** for request logging and input validation
-- **Professional API documentation** using Postman collections
-- **Proper HTTP status codes** and error handling
-- **Secure API endpoints** with input validation and data sanitization
+1. Clone this repository.
+2. Navigate to the project directory.
+3. Install the required dependencies:
 
-## Required Dependencies
-Install the following package for validation:
 ```bash
-npm install express-validator
+npm install
 ```
 
-## Sample Data Structure
-Your API will manage menu items with this structure:
-```javascript
-{
-  id: 1,
-  name: "Classic Burger",
-  description: "Beef patty with lettuce, tomato, and cheese on a sesame seed bun",
-  price: 12.99,
-  category: "entree",
-  ingredients: ["beef", "lettuce", "tomato", "cheese", "bun"],
-  available: true
-}
+4. Start the server:
+
+```bash
+npm start
 ```
 
-## Required API Endpoints
-- `GET /api/menu` - Retrieve all menu items
-- `GET /api/menu/:id` - Retrieve a specific menu item by ID
-- `POST /api/menu` - Add a new menu item
-- `PUT /api/menu/:id` - Update an existing menu item
-- `DELETE /api/menu/:id` - Remove a menu item
+The API will run at:
 
-## Middleware Requirements
-Your API must implement two custom middleware functions:
+`http://localhost:3000`
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/menu` | Retrieve all menu items |
+| GET | `/api/menu/:id` | Retrieve a menu item by ID |
+| POST | `/api/menu` | Create a new menu item |
+| PUT | `/api/menu/:id` | Update an existing menu item |
+| DELETE | `/api/menu/:id` | Delete a menu item |
+
+## Custom Middleware
 
 ### 1. Request Logging Middleware
-- Log HTTP method, URL, and timestamp for all requests
-- Log request body for POST and PUT requests
-- Apply to all routes
+
+Logs the following information for incoming requests:
+
+- HTTP method
+- Request URL
+- Timestamp
+- Request body for POST and PUT requests
 
 ### 2. Input Validation Middleware
-- Validate all required fields using express-validator
-- Apply to POST and PUT endpoints
-- Return appropriate error messages for validation failures
 
-## Validation Rules
-- **Name**: Required string, minimum 3 characters
-- **Description**: Required string, minimum 10 characters
-- **Price**: Required number, greater than 0
-- **Category**: Required string, must be one of: "appetizer", "entree", "dessert", "beverage"
-- **Ingredients**: Required array with at least 1 ingredient
-- **Available**: Boolean (defaults to true)
+Uses `express-validator` to validate menu item information before creating or updating menu items.
+
+Validation requirements:
+
+- **Name:** Required string with at least 3 characters.
+- **Description:** Required string with at least 10 characters.
+- **Price:** Number greater than 0.
+- **Category:** Must be appetizer, entree, dessert, or beverage.
+- **Ingredients:** Array containing at least one ingredient.
+- **Available:** Boolean that defaults to true.
+
+Invalid input returns a 400 status code with details about the validation errors.
 
 ## HTTP Status Codes
-Your API must return appropriate status codes:
-- 200 for successful GET, PUT, DELETE requests
-- 201 for successful POST requests
-- 400 for validation errors
-- 404 for not found errors
 
-## Documentation Requirements
-Create comprehensive API documentation using Postman:
-- Create a collection with all API endpoints
-- Add clear descriptions for each endpoint
-- Include example request bodies for POST/PUT
-- Save response examples for both success and error cases
-- Publish documentation as a public website
+- **200:** Successful GET, PUT, and DELETE requests.
+- **201:** Successfully created menu item.
+- **400:** Invalid input or validation failure.
+- **404:** Requested menu item or route not found.
 
-## Testing Your Implementation
-Use your Postman collection to test:
-- All CRUD operations work correctly
-- Middleware executes in proper order
-- Validation middleware rejects invalid data
-- Logging middleware captures all requests
-- All endpoints return correct status codes
+## Postman API Documentation
 
-## Submission Requirements
-Your final submission should include:
-- Complete Express.js API with all CRUD endpoints
-- Two custom middleware functions (logging and validation)
-- Public URL to your Postman API documentation
-- Clean, organized code with meaningful variable names
+The API was tested using Postman. The collection includes requests for all five CRUD operations, along with examples of successful responses and error responses.
 
-## File Structure
-```
+**Public Postman Documentation:**
+
+[View Tasty Bites Restaurant API Documentation](https://documenter.getpostman.com/view/60215724/2sBYHaQHsz)
+
+## Testing
+
+The following functionality was tested:
+
+- Retrieving all menu items.
+- Retrieving an individual menu item.
+- Creating a new menu item.
+- Updating an existing menu item.
+- Deleting a menu item.
+- Handling requests for nonexistent menu items.
+- Rejecting invalid menu item information.
+- Defaulting the available field to true when omitted.
+
+## Project Files
+
+```text
 server.js
 package.json
+package-lock.json
 README.md
 ```
 
 ## Running the Server
-Start your development server:
+
+Run the following command from the project directory:
+
 ```bash
 npm start
 ```
-Your API will be available at `http://localhost:3000`
+
+The server will start on port 3000.
